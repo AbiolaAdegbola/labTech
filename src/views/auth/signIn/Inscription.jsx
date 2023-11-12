@@ -16,7 +16,7 @@ const Inscription = ({ inscription }) => {
                     style={{ padding: "10px", paddingLeft: "20px", backgroundColor: "#EEEEEE", width: "100%", borderRadius: "20px" }} />
 
                 <br /><br />
-                <label htmlFor="telephone">Telephone</label><br />
+                <label htmlFor="telephone">Téléphone</label><br />
                 <input type="number" placeholder="Votre numéro de téléphone"
                     id="telephone"
                     {...register("telephone")}
