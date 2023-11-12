@@ -40,7 +40,7 @@ export default function Project(props) {
             me='4px'>
             Project #{ranking} •{" "}
             <Link fontWeight='500' color={brandColor} href={link} fontSize='sm'>
-              See project details
+              voir les détails du projet
             </Link>
           </Text>
         </Box>

@@ -1,41 +1,10 @@
-/* eslint-disable */
-/*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
- |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
- |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
-=========================================================
-* Horizon UI - v1.1.0
-=========================================================
-
-* Product Page: https://www.horizon-ui.com/
-* Copyright 2023 Horizon UI (https://www.horizon-ui.com/)
-
-* Designed and Coded by Simmmple
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 // Chakra imports
 import {
-  Box,
   Button,
-  Checkbox,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   Icon,
-  Input,
-  InputGroup,
-  InputRightElement,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -44,17 +13,19 @@ import { HSeparator } from "components/separator/Separator";
 import DefaultAuth from "layouts/auth/Default";
 // Assets
 import illustration from "assets/img/auth/auth.png";
-import { FcGoogle } from "react-icons/fc";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { RiEyeCloseLine } from "react-icons/ri";
+import { BsFillPersonPlusFill } from "react-icons/bs";
+import axios from "axios";
+import Connexion from "./Connexion";
+import Inscription from "./Inscription";
+import { useHistory } from "react-router-dom";
 
 function SignIn() {
+
+  const navigate = useHistory();
+
+  const [vue, setVue] = useState("initial");
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");
-  const textColorSecondary = "gray.400";
-  const textColorDetails = useColorModeValue("navy.700", "secondaryGray.600");
-  const textColorBrand = useColorModeValue("brand.500", "white");
-  const brandStars = useColorModeValue("brand.500", "brand.400");
   const googleBg = useColorModeValue("secondaryGray.300", "whiteAlpha.200");
   const googleText = useColorModeValue("navy.700", "white");
   const googleHover = useColorModeValue(
@@ -65,8 +36,71 @@ function SignIn() {
     { bg: "secondaryGray.300" },
     { bg: "whiteAlpha.200" }
   );
-  const [show, setShow] = React.useState(false);
-  const handleClick = () => setShow(!show);
+
+  const connexion = async (data) => {
+    try {
+
+      let connexion = {
+        email: data.email,
+        mdp: data.mdp
+      }
+
+      const fetchPosts = async () => {
+        const response = await axios.post('http://localhost/labTech/connexion.php', { connexion });
+        // console.log(response.data)
+        if (response.data === 'Mot de passe incorrecte') {
+          // 'Mot de passe incorrecte'
+
+        } else if (response.data === 'E-mail n\'existe pas') {
+          // 'E-mail n\'existe pas'
+        } else {
+          const id = response.data
+          navigate.push(`../admin/profile/${id}`)
+        }
+
+
+      };
+
+      await fetchPosts();
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  const inscription = async (data) => {
+    try {
+
+      let inscription = {
+        nom: data.nom,
+        email: data.emailInsc,
+        telephone: data.telephone,
+        description: data.description,
+        promotion: data.promotion,
+        filiere: data.filiere,
+        mdp: data.mdpInsc
+      }
+
+      const fetchPosts = async () => {
+        const response = await axios.post('http://localhost/labTech/connexion.php', { inscription });
+        console.log(response.data)
+
+        if (response.data === "Votre compte a été crée avec succès") {
+          // Votre compte a été crée avec succès
+          const id = response.data
+          navigate.push(`../admin/profile/${id}`)
+        }
+
+      };
+
+      await fetchPosts();
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <DefaultAuth illustrationBackground={illustration} image={illustration}>
       <Flex
@@ -77,23 +111,15 @@ function SignIn() {
         h='100%'
         alignItems='start'
         justifyContent='center'
-        mb={{ base: "30px", md: "60px" }}
-        px={{ base: "25px", md: "0px" }}
-        mt={{ base: "40px", md: "14vh" }}
+        mb={{ base: "5px", md: "5px" }}
+        px={{ base: "5px", md: "0px" }}
+        mt={{ base: "5px", md: "1vh" }}
         flexDirection='column'>
-        <Box me='auto'>
-          <Heading color={textColor} fontSize='36px' mb='10px'>
-            Sign In
-          </Heading>
-          <Text
-            mb='36px'
-            ms='4px'
-            color={textColorSecondary}
-            fontWeight='400'
-            fontSize='md'>
-            Enter your email and password to sign in!
-          </Text>
-        </Box>
+        <Heading color={textColor} fontSize='26px' mb='30px'>
+          Authentification
+          <br />
+        </Heading>
+
         <Flex
           zIndex='2'
           direction='column'
@@ -104,132 +130,64 @@ function SignIn() {
           mx={{ base: "auto", lg: "unset" }}
           me='auto'
           mb={{ base: "20px", md: "auto" }}>
-          <Button
-            fontSize='sm'
-            me='0px'
-            mb='26px'
-            py='15px'
-            h='50px'
-            borderRadius='16px'
-            bg={googleBg}
-            color={googleText}
-            fontWeight='500'
-            _hover={googleHover}
-            _active={googleActive}
-            _focus={googleActive}>
-            <Icon as={FcGoogle} w='20px' h='20px' me='10px' />
-            Sign in with Google
-          </Button>
+          <div onClick={() => setVue("none")} style={{ display: vue === "initial" ? "initial" : "none" }}>
+            <Button
+              fontSize='sm'
+              me='0px'
+              mb='26px'
+              py='15px'
+              h='50px'
+              w="100%"
+              borderRadius='16px'
+              bg={googleBg}
+              color={googleText}
+              fontWeight='500'
+              _hover={googleHover}
+              _active={googleActive}
+              _focus={googleActive}>
+
+              <Icon as={BsFillPersonPlusFill} w='20px' h='20px' me='10px' />
+              S'inscrire
+            </Button>
+          </div>
+
+          <div onClick={() => setVue("initial")} style={{ display: vue === "initial" ? "none" : "initial" }}>
+            <Button
+              fontSize='sm'
+              me='0px'
+              mb='26px'
+              py='15px'
+              h='50px'
+              w="100%"
+              borderRadius='16px'
+              bg={googleBg}
+              color={googleText}
+              fontWeight='500'
+              _hover={googleHover}
+              _active={googleActive}
+              _focus={googleActive}>
+
+              <Icon as={BsFillPersonPlusFill} w='20px' h='20px' me='10px' />
+              Se connecter
+            </Button>
+          </div>
+
           <Flex align='center' mb='25px'>
             <HSeparator />
             <Text color='gray.400' mx='14px'>
-              or
+              ou
             </Text>
             <HSeparator />
           </Flex>
-          <FormControl>
-            <FormLabel
-              display='flex'
-              ms='4px'
-              fontSize='sm'
-              fontWeight='500'
-              color={textColor}
-              mb='8px'>
-              Email<Text color={brandStars}>*</Text>
-            </FormLabel>
-            <Input
-              isRequired={true}
-              variant='auth'
-              fontSize='sm'
-              ms={{ base: "0px", md: "0px" }}
-              type='email'
-              placeholder='mail@simmmple.com'
-              mb='24px'
-              fontWeight='500'
-              size='lg'
-            />
-            <FormLabel
-              ms='4px'
-              fontSize='sm'
-              fontWeight='500'
-              color={textColor}
-              display='flex'>
-              Password<Text color={brandStars}>*</Text>
-            </FormLabel>
-            <InputGroup size='md'>
-              <Input
-                isRequired={true}
-                fontSize='sm'
-                placeholder='Min. 8 characters'
-                mb='24px'
-                size='lg'
-                type={show ? "text" : "password"}
-                variant='auth'
-              />
-              <InputRightElement display='flex' alignItems='center' mt='4px'>
-                <Icon
-                  color={textColorSecondary}
-                  _hover={{ cursor: "pointer" }}
-                  as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
-                  onClick={handleClick}
-                />
-              </InputRightElement>
-            </InputGroup>
-            <Flex justifyContent='space-between' align='center' mb='24px'>
-              <FormControl display='flex' alignItems='center'>
-                <Checkbox
-                  id='remember-login'
-                  colorScheme='brandScheme'
-                  me='10px'
-                />
-                <FormLabel
-                  htmlFor='remember-login'
-                  mb='0'
-                  fontWeight='normal'
-                  color={textColor}
-                  fontSize='sm'>
-                  Keep me logged in
-                </FormLabel>
-              </FormControl>
-              <NavLink to='/auth/forgot-password'>
-                <Text
-                  color={textColorBrand}
-                  fontSize='sm'
-                  w='124px'
-                  fontWeight='500'>
-                  Forgot password?
-                </Text>
-              </NavLink>
-            </Flex>
-            <Button
-              fontSize='sm'
-              variant='brand'
-              fontWeight='500'
-              w='100%'
-              h='50'
-              mb='24px'>
-              Sign In
-            </Button>
-          </FormControl>
-          <Flex
-            flexDirection='column'
-            justifyContent='center'
-            alignItems='start'
-            maxW='100%'
-            mt='0px'>
-            <Text color={textColorDetails} fontWeight='400' fontSize='14px'>
-              Not registered yet?
-              <NavLink to='/auth/sign-up'>
-                <Text
-                  color={textColorBrand}
-                  as='span'
-                  ms='5px'
-                  fontWeight='500'>
-                  Create an Account
-                </Text>
-              </NavLink>
-            </Text>
-          </Flex>
+          <div className="connexionBoite" style={{ display: vue === "initial" ? "initial" : "none" }}>
+            <Connexion connexion={connexion} />
+          </div>
+
+          {/* div inscription */}
+          <div className="inscriptionBoite" style={{ display: vue === "initial" ? "none" : "initial" }}>
+            <Inscription inscription={inscription} />
+          </div>
+          <br />
         </Flex>
       </Flex>
     </DefaultAuth>

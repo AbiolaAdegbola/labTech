@@ -6,7 +6,6 @@ import {
   Button,
   Flex,
   Icon,
-  Image,
   Link,
   Text,
   useColorModeValue,
@@ -18,7 +17,7 @@ import React, { useState } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 
 export default function NFT(props) {
-  const { image, name, author, bidders, download, currentbid } = props;
+  const { name, author, bidders, download, currentbid } = props;
   const [like, setLike] = useState(false);
   const textColor = useColorModeValue("navy.700", "white");
   const textColorBid = useColorModeValue("brand.500", "white");
@@ -26,12 +25,12 @@ export default function NFT(props) {
     <Card p='20px'>
       <Flex direction={{ base: "column" }} justify='center'>
         <Box mb={{ base: "20px", "2xl": "20px" }} position='relative'>
-          <Image
+          {/* <Image
             src={image}
-            w={{ base: "100%", "3xl": "100%" }}
+            w={{ base: "100%", "2xl": "100%" }}
             h={{ base: "100%", "3xl": "100%" }}
             borderRadius='20px'
-          />
+          /> */}
           <Button
             position='absolute'
             bg='white'
@@ -122,7 +121,7 @@ export default function NFT(props) {
             }}
             mt='25px'>
             <Text fontWeight='700' fontSize='sm' color={textColorBid}>
-              Current Bid: {currentbid}
+              J'adores : {currentbid}
             </Text>
             <Link
               href={download}
@@ -141,7 +140,7 @@ export default function NFT(props) {
                 borderRadius='70px'
                 px='24px'
                 py='5px'>
-                Place Bid
+                Repondre
               </Button>
             </Link>
           </Flex>

@@ -1,14 +1,14 @@
 export const tableColumnsTopCreators = [
   {
-    Header: "Name",
-    accessor: "name",
+    Header: "Profil",
+    accessor: "profil",
   },
   {
-    Header: "Artworks",
-    accessor: "artworks",
+    Header: "Expériences",
+    accessor: "experience",
   },
   {
-    Header: "Rating",
-    accessor: "rating",
+    Header: "Société",
+    accessor: "societe",
   },
 ];

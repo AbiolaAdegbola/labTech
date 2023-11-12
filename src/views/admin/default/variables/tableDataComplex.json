@@ -1,26 +1,20 @@
 [
   {
-    "name":"Horizon UI PRO",
-    "status": "Approved",
-    "date": "18 Apr 2022",
-    "progress": 75.5  
+    "avatar":"../assets/img/avatars/avatar1.png",
+    "name":"Kone Alex",
+    "filiere": "EEAI",
+    "annee": "2020-2025" 
   },
   {
-    "name":"Horizon UI Free",
-    "status": "Disable",
-    "date": "18 Apr 2022",
-    "progress": 25.5  
+    "avatar":"photo profil",
+    "name":"Koffi Kan Aristide",
+    "filiere": "EEM",
+    "annee": "2019-2023"  
   },
   {
-    "name":"Marketplace",
-    "status": "Error",
-    "date": "20 May 2021",
-    "progress": 90  
-  },
-  {
-    "name":"Weekly Updates",
-    "status": "Approved",
-    "date": "12 Jul 2021",
-    "progress": 50.5  
+    "avatar":"photo profil",
+    "name":"N'da Annet",
+    "filiere": "EEM",
+    "annee": "2019-2023"  
   }
 ]

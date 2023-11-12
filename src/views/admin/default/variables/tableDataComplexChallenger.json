@@ -1,0 +1,20 @@
+[
+    {
+      "avatar":"../assets/img/avatars/avatar1.png",
+      "name":"Jean Noel",
+      "filiere": "EEAI",
+      "nombre": "15" 
+    },
+    {
+      "avatar":"photo profil",
+      "name":"Kra Alex",
+      "filiere": "EEM",
+      "nombre": "12"  
+    },
+    {
+      "avatar":"photo profil",
+      "name":"Touré",
+      "filiere": "EEM",
+      "nombre": "5"  
+    }
+  ]

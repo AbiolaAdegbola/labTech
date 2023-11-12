@@ -1,15 +1,15 @@
 export const columnsDataCheck = [
   {
-    Header: "NAME",
+    Header: "Nom & prénom",
     accessor: "name",
   },
   {
-    Header: "PROGRESS",
-    accessor: "progress",
+    Header: "Année",
+    accessor: "annee",
   },
   {
-    Header: "QUANTITY",
-    accessor: "quantity",
+    Header: "Filière",
+    accessor: "filiere",
   },
   {
     Header: "DATE",
@@ -18,19 +18,58 @@ export const columnsDataCheck = [
 ];
 export const columnsDataComplex = [
   {
-    Header: "NAME",
+    Header: "Profil",
+    accessor: "avatar",
+  },
+  {
+    Header: "Nom & prénom",
     accessor: "name",
   },
   {
-    Header: "STATUS",
-    accessor: "status",
+    Header: "Filière",
+    accessor: "filiere",
   },
   {
-    Header: "DATE",
-    accessor: "date",
+    Header: "Année",
+    accessor: "annee",
+  }
+];
+
+
+export const columnsDataComplexConversation = [
+  {
+    Header: "Profil",
+    accessor: "avatar",
   },
   {
-    Header: "PROGRESS",
-    accessor: "progress",
+    Header: "Nom & prénom",
+    accessor: "name",
   },
+  {
+    Header: "Filière",
+    accessor: "filiere",
+  },
+  {
+    Header: "Année",
+    accessor: "annee",
+  }
+];
+
+export const columnsDataComplexChallenger = [
+  {
+    Header: "Profil",
+    accessor: "avatar",
+  },
+  {
+    Header: "Nom & prénom",
+    accessor: "name",
+  },
+  {
+    Header: "Filière",
+    accessor: "filiere",
+  },
+  {
+    Header: "Nombre",
+    accessor: "nombre",
+  }
 ];

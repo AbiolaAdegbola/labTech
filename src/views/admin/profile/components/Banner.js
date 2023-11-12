@@ -1,10 +1,10 @@
 // Chakra imports
-import { Avatar, Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Progress, Text, useColorModeValue } from "@chakra-ui/react";
 import Card from "components/card/Card.js";
 import React from "react";
 
 export default function Banner(props) {
-  const { banner, avatar, name, job, posts, followers, following } = props;
+  const { banner, avatar, name, job, posts, followers, following, used } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -16,9 +16,9 @@ export default function Banner(props) {
     <Card mb={{ base: "0px", lg: "20px" }} align='center'>
       <Box
         bg={`url(${banner})`}
-        bgSize='cover'
+        bgSize='contain'
         borderRadius='16px'
-        h='131px'
+        h='141px'
         w='100%'
       />
       <Avatar
@@ -42,7 +42,7 @@ export default function Banner(props) {
             {posts}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Posts
+            Challenges
           </Text>
         </Flex>
         <Flex mx='auto' me='60px' align='center' direction='column'>
@@ -50,7 +50,7 @@ export default function Banner(props) {
             {followers}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Followers
+            Suivi(e)s
           </Text>
         </Flex>
         <Flex mx='auto' align='center' direction='column'>
@@ -58,10 +58,25 @@ export default function Banner(props) {
             {following}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Following
+            J'aime
           </Text>
         </Flex>
       </Flex>
+
+      <Flex w='100%' justify='space-between' mb='10px'>
+          <Text color={textColorSecondary} fontSize='sm' maxW='40%'>
+            {used} %
+          </Text>
+          <Text color={textColorSecondary} fontSize='sm' maxW='40%'>
+            100 %
+          </Text>
+        </Flex>
+        <Progress
+          align='start'
+          colorScheme='brandScheme'
+          value={(used / 100) * 100}
+          w='100%'
+        />
     </Card>
   );
 }

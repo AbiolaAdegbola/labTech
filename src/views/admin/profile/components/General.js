@@ -1,5 +1,6 @@
 // Chakra imports
 import { SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react/dist/chakra-ui-react.cjs";
 // Custom components
 import Card from "components/card/Card.js";
 import React from "react";
@@ -7,7 +8,7 @@ import Information from "views/admin/profile/components/Information";
 
 // Assets
 export default function GeneralInformation(props) {
-  const { ...rest } = props;
+  const { description, ...rest } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -23,15 +24,35 @@ export default function GeneralInformation(props) {
         fontSize='2xl'
         mt='10px'
         mb='4px'>
-        General Information
+        Description
       </Text>
       <Text color={textColorSecondary} fontSize='md' me='26px' mb='40px'>
-        As we live, our hearts turn colder. Cause pain is what we go through as
-        we become older. We get insulted by others, lose trust for those others.
-        We get back stabbed by friends. It becomes harder for us to give others
-        a hand. We get our heart broken by people we love, even that we give
-        them all...
+        {description}
       </Text>
+      <SimpleGrid columns='1' gap='20px'>
+        {/* <Information
+          boxShadow={cardShadow}
+          title='Formation'
+          value='Stanford University'
+        /> */}
+
+
+        <Card>
+          <Box>
+            <div style={{ display: "flex" }}>
+              <Text fontWeight='500' color={textColorSecondary} fontSize='sm'>
+              Formation
+              </Text>
+              <Text color={textColorPrimary} fontWeight='500' fontSize='md'>
+              Stanford University
+              </Text>
+            </div>
+          </Box>
+        </Card>
+
+      </SimpleGrid>
+
+      <br />
       <SimpleGrid columns='2' gap='20px'>
         <Information
           boxShadow={cardShadow}
