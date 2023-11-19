@@ -97,10 +97,10 @@ export default function Overview() {
             mb='4px'>
             Description
           </Text>
-          <Text color={textColorSecondary} fontSize='md' me='26px' mb='20px'>
+          <Text color={textColorSecondary} fontSize='md' me='6px' mb='3px'>
             {infoProfil.description}
           </Text>
-          <SimpleGrid columns='1' gap='20px'>
+          {/* <SimpleGrid columns='1' gap='100px'> */}
 
             <Card bg={bg}>
               <Box>
@@ -123,7 +123,7 @@ export default function Overview() {
             </Card>
 
             <Card bg={bg}>
-              <Box width="900px">
+              <Box width="100%">
                 <div style={{ fontSize: "18px", margin: "10px" }}>Expérience professionnel</div>
                 <div style={{ width: "100%" }}>
                   <div style={{ position: "relative" }}>
@@ -217,7 +217,7 @@ export default function Overview() {
                 </div>
               </Box>
             </Card>
-          </SimpleGrid>
+          {/* </SimpleGrid> */}
 
           <br />
           <SimpleGrid columns='2' gap='20px'>

@@ -86,8 +86,10 @@ function SignIn() {
         const response = await axios.post('http://localhost/labTech/connexion.php', { inscription });
         console.log(response.data)
 
-        if (response.data === "Votre compte a été crée avec succès") {
+        if (response.data === "Votre compte a été crée avec suc") {
           // Votre compte a été crée avec succès
+          
+        }else{
           const id = response.data
           navigate.push(`../admin/profile/${id}`)
         }
@@ -105,15 +107,15 @@ function SignIn() {
     <DefaultAuth illustrationBackground={illustration} image={illustration}>
       <Flex
         maxW={{ base: "100%", md: "max-content" }}
-        w='100%'
-        mx={{ base: "auto", lg: "0px" }}
-        me='auto'
-        h='100%'
+        // w='100%'
+        // mx={{ base: "auto", lg: "0px" }}
+        // me='auto'
+        // h='100vh'
         alignItems='start'
         justifyContent='center'
-        mb={{ base: "5px", md: "5px" }}
-        px={{ base: "5px", md: "0px" }}
-        mt={{ base: "5px", md: "1vh" }}
+        // mb={{ base: "5px", md: "5px" }}
+        // px={{ base: "5px", md: "0px" }}
+        // mt={{ base: "5px", md: "1vh" }}
         flexDirection='column'>
         <Heading color={textColor} fontSize='26px' mb='30px'>
           Authentification

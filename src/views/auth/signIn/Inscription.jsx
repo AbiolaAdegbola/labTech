@@ -4,8 +4,6 @@ const Inscription = ({ inscription }) => {
 
     const { handleSubmit, register } = useForm();
 
-
-
     return (
         <div className='InscriptionConteneur'>
             <form onSubmit={handleSubmit(inscription)}>
